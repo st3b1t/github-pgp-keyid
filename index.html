@@ -14,7 +14,7 @@
         <button type="submit">Search</button>
     </form>
 
-     <big id="keyid"></big>
+     <ul id="keyid"></ul>
 
     <script>
         const keyid = document.getElementById('keyid')
@@ -28,7 +28,14 @@
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
-                    keyid.textContent = data.key_id;
+                    data.forEach(u => {
+const li = document.createElement('li');
+const emails = u.emails.map(e => e.email)
+                        li.textContent = `KEYID: ${u.key_id} EMAIL: ${emails.join(', ')}`;
+                        keyid.appendChild(li);
+
+})
+                    
                 })
                 .catch(error => console.error('Error fetching data:', error));
         });
