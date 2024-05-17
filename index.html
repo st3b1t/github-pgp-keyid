@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub PGP Key ID</title>
+</head>
+<body>
+    
+
+
+  <form id="user-form">
+        <input type="text" id="username" placeholder="Enter GitHub username" required>
+        <button type="submit">Search</button>
+    </form>
+
+     <big id="keyid"></big>
+
+    <script>
+        const keyid = document.getElementById('keyid')
+
+        document.getElementById('user-form').addEventListener('submit', e => {
+            e.preventDefault(); // Prevent form submission
+
+            const username = document.getElementById('username').value;
+            keyid.textContent = '';
+            fetch(`https://github.com/${username}.gpg`)
+                .then(response => response.json())
+                .then(data => {
+                    keyid.textContent = data;
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        });
+    </script>
+</body>
+</html>
