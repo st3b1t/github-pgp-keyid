@@ -52,8 +52,8 @@ document.getElementById('user-form').addEventListener('submit', e => {
             }
             data.forEach(u => {
                 const li = document.createElement('li');
-                const emails = u.emails.map(e => `<a href="mailto:${e.email}">${e.email}</a>`)
-                li.innerHTML = `KEYID: <a href="https://github.com/${username}.gpg">${u.key_id}</a> <br> EMAIL: ${emails.join(', ')}`;
+                const emails = u.emails.map(e => `<a title="Send email" href="mailto:${e.email}">${e.email}</a>`)
+                li.innerHTML = `KEYID: <a title="Download" href="https://github.com/${username}.gpg">${u.key_id}</a> <br> EMAIL: ${emails.join(', ')}`;
                 keyid.appendChild(li);
             });
             setTimeout(()=>{donate.style.visibility = 'visible';},3000)
