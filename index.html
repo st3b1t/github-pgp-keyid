@@ -30,8 +30,8 @@
                 .then(data => {
                     data.forEach(u => {
 const li = document.createElement('li');
-const emails = u.emails.map(e => e.email)
-                        li.textContent = `KEYID: ${u.key_id} EMAIL: ${emails.join(', ')}`;
+const emails = u.emails.map(e => `<a href="mailto:${e.email}">${e.email}</a>`)
+                        li.innerHTML = `KEYID: <a href="https://github.com/${username}.gpg">${u.key_id} <br> EMAIL: ${emails.join(', ')}`;
                         keyid.appendChild(li);
 
 })
