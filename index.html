@@ -47,6 +47,9 @@ document.getElementById('user-form').addEventListener('submit', e => {
     fetch(url)
         .then(response => response.json())
         .then(data => {
+            if (data.length === 0) {
+                keyid.textContent = 'GPG keys not found for this user!';
+            }
             data.forEach(u => {
                 const li = document.createElement('li');
                 const emails = u.emails.map(e => `<a href="mailto:${e.email}">${e.email}</a>`)
